@@ -81,6 +81,7 @@ obj-$(CONFIG_LEDS_QPNP_HAPTICS)	+= leds-qpnp-haptics.o
 obj-$(CONFIG_LEDS_QPNP_VIBRATOR_LDO)	+= leds-qpnp-vibrator-ldo.o
 obj-$(CONFIG_LEDS_QPNP_VIBRATOR) 	+= leds-qpnp-vibrator.o
 obj-$(CONFIG_LEDS_ATC)			+= leds-atc.o
+obj-$(CONFIG_LEDS_ISL98611)		+= leds-isl98611.o
 
 # LED SPI Drivers
 obj-$(CONFIG_LEDS_DAC124S085)		+= leds-dac124s085.o
