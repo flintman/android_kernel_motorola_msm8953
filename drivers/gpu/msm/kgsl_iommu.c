@@ -43,7 +43,7 @@
 #define ADDR_IN_GLOBAL(_mmu, _a) \
 	(((_a) >= KGSL_IOMMU_GLOBAL_MEM_BASE(_mmu)) && \
 	 ((_a) < (KGSL_IOMMU_GLOBAL_MEM_BASE(_mmu) + \
-	 KGSL_IOMMU_GLOBAL_MEM_SIZE)))
+	 KGSL_IOMMU_GLOBAL_MEM_SIZE(_mmu))))
 
 /*
  * Flag to set SMMU memory attributes required to
@@ -235,7 +235,7 @@ static void kgsl_iommu_add_global(struct kgsl_mmu *mmu,
 	if (WARN_ON(global_pt_count >= GLOBAL_PT_ENTRIES))
 		return;
 
-	if (WARN_ON(size > KGSL_IOMMU_GLOBAL_MEM_SIZE))
+	if (WARN_ON(size > KGSL_IOMMU_GLOBAL_MEM_SIZE(mmu)))
 		return;
 
 	if (memdesc->priv & KGSL_MEMDESC_RANDOM) {
