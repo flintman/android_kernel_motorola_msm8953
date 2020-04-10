@@ -267,6 +267,7 @@ sxr1130-qrd-overlay.dtbo-base := sxr1130.dtb
 sxr1130-svr-overlay.dtbo-base := sxr1130.dtb
 
 else
+
 dtb-$(CONFIG_ARCH_SDM670) += sdm670-rumi.dtb \
 	sdm670-mtp.dtb \
 	sdm670-cdp.dtb \
@@ -702,6 +703,15 @@ dtb-$(CONFIG_SANDERS_DTB) += \
 	msm8953-sanders-p2.dtb \
 	msm8953-sanders-p3.dtb \
 	msm8953-sanders-p4.dtb
+
+dtb-$(CONFIG_POTTER_DTB) += \
+    msm8953-potter-p0a.dtb \
+	msm8953-potter-p1a.dtb \
+	msm8953-potter-p1b.dtb \
+	msm8953-potter-p2a.dtb \
+	msm8953-potter-p2a2.dtb \
+	msm8953-potter-p2b.dtb \
+	msm8953-potter-p3a.dtb
 
 endif
 
