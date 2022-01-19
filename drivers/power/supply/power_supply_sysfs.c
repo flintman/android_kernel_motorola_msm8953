@@ -89,6 +89,9 @@ static ssize_t power_supply_show_property(struct device *dev,
 	static char *charge_rate[] = {
 		"None", "Normal", "Weak", "Turbo"
 	};
+	static char *extern_state[] = {
+		"Disconnected", "Sink", "Source", "Off"
+	};
 	ssize_t ret = 0;
 	struct power_supply *psy = dev_get_drvdata(dev);
 	const ptrdiff_t off = attr - power_supply_attrs;
@@ -151,6 +154,12 @@ static ssize_t power_supply_show_property(struct device *dev,
 	else if (off >= POWER_SUPPLY_PROP_MODEL_NAME)
 		return scnprintf(buf, PAGE_SIZE, "%s\n",
 				value.strval);
+	else if (off == POWER_SUPPLY_PROP_MAIN_STATUS)
+		return snprintf(buf, strlen(status_text[value.intval]) + 2,
+				"%s\n", status_text[value.intval]);
+	else if (off == POWER_SUPPLY_PROP_EXTERN_STATE)
+		return snprintf(buf, strlen(extern_state[value.intval]) + 2,
+				"%s\n", extern_state[value.intval]);
 
 	if (off == POWER_SUPPLY_PROP_CHARGE_COUNTER_EXT)
 		return scnprintf(buf, PAGE_SIZE, "%lld\n",
@@ -356,10 +365,29 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(qg_vbms_mode),
 	POWER_SUPPLY_ATTR(real_capacity),
 	POWER_SUPPLY_ATTR(age),
+	POWER_SUPPLY_ATTR(internal_send),
+	POWER_SUPPLY_ATTR(internal_receive),
+	POWER_SUPPLY_ATTR(external),
+	POWER_SUPPLY_ATTR(current_flow),
+	POWER_SUPPLY_ATTR(max_input_current),
+	POWER_SUPPLY_ATTR(max_output_current),
+	POWER_SUPPLY_ATTR(external_present),
+	POWER_SUPPLY_ATTR(power_required),
+	POWER_SUPPLY_ATTR(power_available),
+	POWER_SUPPLY_ATTR(power_source),
+	POWER_SUPPLY_ATTR(max_output_voltage),
+	POWER_SUPPLY_ATTR(output_voltage),
+	POWER_SUPPLY_ATTR(max_input_voltage),
+	POWER_SUPPLY_ATTR(input_voltage),
+	POWER_SUPPLY_ATTR(main_status),
+	POWER_SUPPLY_ATTR(extern_state),
 	POWER_SUPPLY_ATTR(disable_usbc),
 	POWER_SUPPLY_ATTR(switch_state),
 	POWER_SUPPLY_ATTR(wakeup),
 	POWER_SUPPLY_ATTR(mask_int),
+	POWER_SUPPLY_ATTR(system_temp_in_level),
+	POWER_SUPPLY_ATTR(num_system_temp_in_levels),
+	POWER_SUPPLY_ATTR(usb_owner),
 	/* Local extensions of type int64_t */
 	POWER_SUPPLY_ATTR(charge_counter_ext),
 	/* Properties of type `const char *' */

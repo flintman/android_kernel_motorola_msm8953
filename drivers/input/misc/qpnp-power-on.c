@@ -245,6 +245,8 @@ module_param_named(
 	ship_mode_en, pon_ship_mode_en, int, 0600
 );
 
+int qpnp_pon_key_status = 0;
+
 static struct qpnp_pon *sys_reset_dev;
 static DEFINE_SPINLOCK(spon_list_slock);
 static LIST_HEAD(spon_dev_list);
@@ -1007,6 +1009,8 @@ qpnp_pon_input_dispatch(struct qpnp_pon *pon, u32 pon_type)
 		return rc;
 	}
 
+	qpnp_pon_key_status = pon_rt_sts;
+	
 	switch (cfg->pon_type) {
 	case PON_KPDPWR:
 		pon_rt_bit = QPNP_PON_KPDPWR_N_SET;
