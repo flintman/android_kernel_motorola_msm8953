@@ -890,6 +890,11 @@ config INPUT_DRV2667_HAPTICS
 	  To compile this driver as a module, choose M here: the
 	  module will be called drv2667-haptics.
 
+config STMVL53L0
+	tristate "STMVL53L0 support"
+	help
+	laser sensor driver.
+
 config INPUT_HISI_POWERKEY
 	tristate "Hisilicon PMIC ONKEY support"
 	depends on ARCH_HISI || COMPILE_TEST
