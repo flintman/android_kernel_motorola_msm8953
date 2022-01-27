@@ -299,7 +299,7 @@ static int msm_secure_map_sg(struct io_pgtable_ops *ops, unsigned long iova,
 	return ret;
 }
 
-static size_t msm_secure_unmap(struct io_pgtable_ops *ops, unsigned long iova,
+static int msm_secure_unmap(struct io_pgtable_ops *ops, unsigned long iova,
 			  size_t len)
 {
 	struct msm_secure_io_pgtable *data = io_pgtable_ops_to_data(ops);
