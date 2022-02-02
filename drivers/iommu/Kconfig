@@ -409,6 +409,8 @@ config MTK_IOMMU_V1
 
 	  if unsure, say N here.
 
+source drivers/iommu/qcom/Kconfig
+
 menuconfig IOMMU_DEBUG
 	bool "IOMMU Profiling and Debugging"
 	help
@@ -436,7 +438,6 @@ config IOMMU_TESTS
 	  through debugfs.  Unlike the IOMMU_DEBUG_TRACKING option, the
 	  impact of enabling this option to overal system performance
 	  should be minimal.
-
 endif # IOMMU_DEBUG
 
 endif # IOMMU_SUPPORT
